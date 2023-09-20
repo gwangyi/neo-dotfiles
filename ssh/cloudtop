@@ -1,0 +1,7 @@
+Host cloudtop
+	HostName sungkwanglee.c.googlers.com
+	ControlPath ~/.ssh/controlmasters/%r@%h:%p
+	ControlMaster auto
+	ControlPersist yes
+
+# vim: set ft=sshconfig:
