@@ -13,11 +13,11 @@ __wezterm_set_user_var () {
 }
 
 _pid=$$
-while ! lsof -p $_pid -a -d 0 -Fn | grep -E "n/dev/(pts|tty)" > /dev/null; do
-    _pid=$(lsof -p 54423 -a -d 0 -FR | perl -n -e '/^R([0-9]+)/ and print $+')
+while ! lsof -p "$_pid" -a -d 0 -Fn 2>/dev/null | grep -E "n/dev/(pts|tty)" > /dev/null; do
+    _pid=$(lsof -p "$_pid" -a -d 0 -FR 2>/dev/null | perl -n -e '/^R([0-9]+)/ and print $+')
     [[ "$_pid" == "0" ]] && break
 done
-_tty=$(lsof -p $_pid -a -d 0 -Fn | perl -n -e '/^n(.*)/ and print $+')
+_tty=$(lsof -p "$_pid" -a -d 0 -Fn 2>/dev/null | perl -n -e '/^n(.*)/ and print $+')
 
 __wezterm_set_user_var __OPEN_URI $@ > $_tty
 
