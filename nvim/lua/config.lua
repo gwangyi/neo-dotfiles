@@ -23,6 +23,9 @@ end
 
 vim.g.python3_host_prog = xdg_data_home .. "/venv/tools/bin/python3"
 
--- pcall(function() require 'corp/config' end)
+local status, err = pcall(require, 'corp.config')
+if not status and not string.find(err, 'module corp.config not found') then
+  error(err)
+end
 
 -- vim: set sw=2 ts=2 et:
