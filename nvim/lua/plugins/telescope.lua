@@ -8,6 +8,9 @@ local config = {
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
+  config = function ()
+    require('telescope').setup{}
+  end
 }
 
 local status, res = pcall(require, 'corp.telescope')
