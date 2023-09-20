@@ -42,7 +42,7 @@ if [[ ! "$XDG_CONFIG_DIRS" == "*$_DOTFILESDIR*" ]]; then
     fi
 fi
 
-export HGRCPATH=$_DOTFILESDIR/hg/mercurial.ini
+export HGRCPATH=/etc/mercurial/hgrc.d:$_DOTFILESDIR/hgrc
 
 if [[ "$(basename "${WEZTERM_EXECUTABLE}")" = "wezterm-mux-server" ]]; then
   # We are running in wezterm mux mode
