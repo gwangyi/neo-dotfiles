@@ -49,8 +49,8 @@ zplug "mafredri/zsh-async", use:"async.zsh"
 
 zplug "zdharma-continuum/fast-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
-zplug "junegunn/fzf", as:command, hook-build:"./install --bin", use:"bin/*"
-zplug "junegunn/fzf", use:"shell/*.zsh"
+zplug "junegunn/fzf", use:"shell/*.zsh", hook-build:"./install --bin"
+zplug "junegunn/fzf", as:command, use:"bin/*"
 
 zplug "pyenv/pyenv", as:command, hook-build:"src/configure && make -C src", use:"bin/*"
 zplug "mhinz/neovim-remote", as:command, hook-build:"$PYTHON_TOOLS_HOME/bin/python3 -m pip install -e ."
@@ -60,7 +60,7 @@ zplug "romkatv/powerlevel10k", as:theme, depth:1
 [[ -f "$_DOTFILESDIR/corp/zsh/plugins.zsh" ]] && source "$_DOTFILESDIR/corp/zsh/plugins.zsh"
 # }}}
 
-# {{{ zplug instal
+# {{{ zplug install
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -71,6 +71,46 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+# }}}
+
+# {{{ Default .zshrc contents
+# Set up the prompt
+
+autoload -Uz promptinit
+promptinit
+prompt adam1
+
+setopt histignorealldups sharehistory
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+which dircolors > /dev/null 2> /dev/null && eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # }}}
 
 # vim: set fdm=marker fmr={{{,}}} ts=4 sw=4 et:
