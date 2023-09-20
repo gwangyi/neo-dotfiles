@@ -28,4 +28,8 @@ if not status and not string.find(err, 'module corp.config not found') then
   error(err)
 end
 
+vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
+vim.env.HGEDITOR = 'nvr -cc split --remote-wait'
+vim.cmd([[autocmd FileType gitcommit,gitrebase,gitconfig,hgcommit set bufhidden=delete]])
+
 -- vim: set sw=2 ts=2 et:
