@@ -39,6 +39,12 @@ config.keys = {
   { key = 'DownArrow', mods = 'SHIFT', action = wezterm.action.ScrollByLine(1) },
 }
 
+config.unix_domains = {
+  {
+    name = 'unix',
+  }
+}
+
 wezterm.on('user-var-changed', function(window, pane, name, value)
   if name == "__OPEN_URI" then
     local chrome_profile = pane:get_user_vars().CHROME_PROFILE
@@ -57,3 +63,4 @@ end
 
 return config
 
+-- vim: set ts=2 sw=2 et:
