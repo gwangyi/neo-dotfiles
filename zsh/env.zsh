@@ -44,6 +44,11 @@ fi
 
 export HGRCPATH=$_DOTFILESDIR/hg/mercurial.ini
 
+if [[ "$(basename "${WEZTERM_EXECUTABLE}")" = "wezterm-mux-server" ]]; then
+  # We are running in wezterm mux mode
+  export SSH_AUTH_SOCK="$HOME/.wezterm-auth-sock"
+fi
+
 [ -f $_DOTFILESDIR/corp/zsh/env.zsh ] && source $_DOTFILESDIR/corp/zsh/env.zsh
 
 # vim: set fdm=marker fmr={{{,}}} sw=4 ts=4 et:
