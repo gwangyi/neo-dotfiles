@@ -30,6 +30,13 @@ end
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 vim.env.HGEDITOR = 'nvr -cc split --remote-wait'
-vim.cmd([[autocmd FileType gitcommit,gitrebase,gitconfig,hgcommit set bufhidden=delete]])
+vim.api.nvim_set_option_value('nu', true, {})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'gitcommit,gitrebase,gitconfig,hgcommit',
+  command = [[set bufhidden=delete]]
+})
+vim.api.nvim_create_autocmd('TermOpen', {
+  command = [[set nonu]]
+})
 
 -- vim: set sw=2 ts=2 et:
