@@ -45,6 +45,14 @@ config.unix_domains = {
   }
 }
 
+config.ssh_domains = {
+  {
+    name = 'rachel',
+    remote_address = '192.168.0.2',
+    username = 'pi',
+  },
+}
+
 wezterm.on('user-var-changed', function(window, pane, name, value)
   if name == "__OPEN_URI" then
     local chrome_profile = pane:get_user_vars().CHROME_PROFILE
@@ -57,7 +65,7 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
 end)
 
 local status, err = pcall(function() require('corp.wezterm')(config, wezterm) end)
-if not status and not string.find(err, 'module "corp.wezterm" not found') then
+if not status and not string.find(err, [[module 'corp.wezterm' not found]]) then
   error(err)
 end
 
