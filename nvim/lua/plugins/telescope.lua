@@ -13,13 +13,11 @@ local config = {
   end
 }
 
-local status, res = pcall(require, 'corp.telescope')
-if status then
-  for _, v in ipairs(res) do
+local dependencies = require('utils').require_or('corp.telescope')
+if dependencies ~= nil then
+  for _, v in ipairs(dependencies) do
     table.insert(config.dependencies, v)
   end
-elseif not string.find(res, "module 'corp.telescope' not found") then
-  error(res)
 end
 
 return config

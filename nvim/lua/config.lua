@@ -23,10 +23,7 @@ end
 
 vim.g.python3_host_prog = xdg_data_home .. "/venv/tools/bin/python3"
 
-local status, err = pcall(require, 'corp.config')
-if not status and not string.find(err, 'module corp.config not found') then
-  error(err)
-end
+require('utils').require_or('corp.config')
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 vim.env.HGEDITOR = 'nvr -cc split --remote-wait'
