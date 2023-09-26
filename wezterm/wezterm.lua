@@ -37,6 +37,14 @@ config.keys = {
   { key = 'DownArrow', mods = 'CTRL|SHIFT', action = wezterm.action.ScrollToPrompt(1) },
   { key = 'UpArrow', mods = 'SHIFT', action = wezterm.action.ScrollByLine(-1) },
   { key = 'DownArrow', mods = 'SHIFT', action = wezterm.action.ScrollByLine(1) },
+  {
+    key = 'r',
+    mods = 'LEADER',
+    action = wezterm.action.Multiple {
+      wezterm.action.DetachDomain { DomainName = 'rachel' },
+      wezterm.action.AttachDomain 'rachel',
+    },
+  },
 }
 
 config.unix_domains = {
