@@ -60,7 +60,8 @@ return {
           autocmd Filetype zsh lua require'cmp'.setup.buffer { sources = { { name = "zsh" }, } }
         augroup END
       ]])
-    end
+    end,
+    event = "VeryLazy"
   },
   {
     'neovim/nvim-lspconfig',
@@ -76,6 +77,7 @@ return {
       vim.opt.completeopt = { "menu", "menuone", "noselect" }
       vim.opt.shortmess:append("c")
     end,
+    event = "VeryLazy"
   },
   {
     'onsails/lspkind.nvim',
