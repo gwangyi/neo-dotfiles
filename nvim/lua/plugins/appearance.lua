@@ -1,13 +1,29 @@
 return {
   {
+    "willothy/nvim-cokeline",
+    dependencies = {
+      "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+      "kyazdani42/nvim-web-devicons", -- If you want devicons
+      "stevearc/resession.nvim"       -- Optional, for persistent history
+    },
+    config = true
+  },
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require'lualine'.setup{
+      local config = {
         options = {
           theme = 'solarized_dark'
         },
+        sections = {
+          lualine_b = { 'branch', 'diff', 'diagnostics' }
+        }
       }
+
+      local corp = require('utils').require_or('corp.lualine-config')
+      if corp then config = corp(config) end
+      require('lualine').setup(config)
     end,
   },
   {
