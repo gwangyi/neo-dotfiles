@@ -14,14 +14,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup('plugins')
-
 local xdg_data_home = os.getenv("XDG_DATA_HOME")
 if xdg_data_home == nil then
   xdg_data_home = "$HOME/.local/share"
 end
 
 vim.g.python3_host_prog = xdg_data_home .. "/venv/tools/bin/python3"
+
+require("lazy").setup('plugins')
 
 require('utils').require_or('corp.config')
 
