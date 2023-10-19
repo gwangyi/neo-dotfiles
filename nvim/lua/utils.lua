@@ -1,6 +1,7 @@
 local require_or = function(module)
   local status, err = pcall(require, module)
-  if not status and not string.find(err, "module '" .. module .. "' not found") then
+  local pattern = string.gsub(module, '(%W)', '%%%1')
+  if not status and not string.find(tostring(err), pattern) then
     error(err)
   elseif status then
     return err
