@@ -6,7 +6,37 @@ return {
       "nvim-tree/nvim-web-devicons", -- If you want devicons
       "stevearc/resession.nvim"       -- Optional, for persistent history
     },
-    config = true
+    config = function()
+      local get_hex = require('cokeline.hlgroups').get_hl_attr
+      local yellow = vim.g.terminal_color_3
+
+      require('cokeline').setup({
+        sidebar = {
+          filetype = {'neo-tree'},
+          components = {
+            {
+              text = function(buf)
+                return buf.filetype
+              end,
+              fg = yellow,
+              bg = function() return get_hex('NvimTreeNormal', 'bg') end,
+              bold = true,
+            },
+          }
+        },
+      })
+      vim.keymap.set("n", "<leader>bp", function()
+        require('cokeline.mappings').pick("focus")
+      end, { desc = "Pick a buffer to focus" })
+
+      local map = vim.api.nvim_set_keymap
+
+      map("n", "<S-Tab>", "<Plug>(cokeline-focus-prev)", { silent = true })
+      map("n", "<Tab>", "<Plug>(cokeline-focus-next)", { silent = true })
+      map("n", "<Leader>p", "<Plug>(cokeline-switch-prev)", { silent = true })
+      map("n", "<Leader>n", "<Plug>(cokeline-switch-next)", { silent = true })
+
+    end
   },
   {
     'nvim-lualine/lualine.nvim',
