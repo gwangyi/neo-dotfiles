@@ -85,6 +85,13 @@ return {
       require('lspkind').init()
     end
   },
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    opts = {
+      -- options
+    },
+  },
 }
 
 -- vim: set ts=2 sw=2 et:
