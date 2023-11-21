@@ -90,6 +90,7 @@ zplug "junegunn/fzf", as:command, use:"bin/*"
 
 zplug "pyenv/pyenv", as:command, hook-build:"src/configure && make -C src", use:"bin/*"
 zplug "mhinz/neovim-remote", as:command, hook-build:"$PYTHON_TOOLS_HOME/bin/python3 -m pip install -e ."
+zplug "aitjcize/cppman", as:command, hook-build:"$PYTHON_TOOLS_HOME/bin/python3 -m pip install -e ."
 
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
