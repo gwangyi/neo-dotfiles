@@ -309,8 +309,6 @@ return {
         }
       }
     })
-
-    vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
   end
 }
 

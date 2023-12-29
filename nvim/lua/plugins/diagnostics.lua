@@ -52,14 +52,14 @@ return {
       },
       use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
     })
-
-    -- Mappings
-    vim.api.nvim_set_keymap("n", "<Leader>xx", "<Cmd>Trouble<CR>", { silent = true, noremap = true })
-    vim.api.nvim_set_keymap("n", "<Leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>", { silent = true, noremap = true })
-    vim.api.nvim_set_keymap("n", "<Leader>xd", "<Cmd>Trouble document_diagnostics<CR>", { silent = true, noremap = true })
-    vim.api.nvim_set_keymap("n", "<Leader>xl", "<Cmd>Trouble loclist<CR>", { silent = true, noremap = true })
-    vim.api.nvim_set_keymap("n", "<Leader>xq", "<Cmd>Trouble quickfix<CR>", { silent = true, noremap = true })
     end,
+    keys = {
+      { '<Leader>xx', '<Cmd>Trouble<CR>', silent = true, noremap = true },
+      { '<Leader>xw', '<Cmd>Trouble workspace_diagnostics<CR>', silent = true, noremap = true },
+      { '<Leader>xd', '<Cmd>Trouble document_diagnostics<CR>', silent = true, noremap = true },
+      { '<Leader>xl', '<Cmd>Trouble loclist<CR>', silent = true, noremap = true },
+      { '<Leader>xq', '<Cmd>Trouble quickfix<CR>', silent = true, noremap = true },
+    }
   },
 }
 
