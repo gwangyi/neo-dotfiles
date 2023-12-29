@@ -71,6 +71,7 @@ return {
       require('lspconfig').gopls.setup({
         capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = require('utils').on_attach,
+        single_file_support = false,
       })
 
       vim.opt.completeopt = { "menu", "menuone", "noselect" }

@@ -1,4 +1,4 @@
-local path = vim.api.nvim_eval([[fnamemodify(resolve(expand('<sfile>:p')), ':h')]])
+local path = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand('<sfile>:p')), ':h')
 package.path = package.path .. ';' .. path .. '/lua/?.lua'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -21,7 +21,7 @@ end
 
 vim.g.python3_host_prog = xdg_data_home .. "/venv/tools/bin/python3"
 
-require("lazy").setup('plugins')
+require('lazy').setup('plugins')
 
 require('utils').require_or('corp.config')
 
@@ -35,5 +35,8 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('TermOpen', {
   command = [[set nonu]]
 })
+
+vim.opt.rtp:append(path)
+vim.opt.rtp:append(vim.fn.fnamemodify(path .. '/../corp/nvim', ':p'))
 
 -- vim: set sw=2 ts=2 et:

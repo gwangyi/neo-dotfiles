@@ -36,13 +36,13 @@ test -e "$HOME/.cargo/env" && . "$HOME/.cargo/env"
 
 if [[ ! "$XDG_CONFIG_DIRS" == "*$_DOTFILESDIR*" ]]; then
     if [ -z "$XDG_CONFIG_DIRS" ]; then
-        export XDG_CONFIG_DIRS=$_DOTFILESDIR
+        export XDG_CONFIG_DIRS=$_DOTFILESDIR:$_DOTFILESDIR/corp
     else
-        export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:$_DOTFILESDIR
+        export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:$_DOTFILESDIR:$_DOTFILESDIR/corp
     fi
 fi
 
-export HGRCPATH=/etc/mercurial/hgrc.d:$_DOTFILESDIR/hgrc
+export HGRCPATH=/etc/mercurial/hgrc.d:$_DOTFILESDIR/hgrc:$_DOTFILESDIR/corp/hgrc
 
 if [[ "$(basename "${WEZTERM_EXECUTABLE}")" = "wezterm-mux-server" ]]; then
   # We are running in wezterm mux mode
