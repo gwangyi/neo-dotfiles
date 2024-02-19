@@ -52,17 +52,6 @@ function _find_dotfiles_dir() {
 _DOTFILESDIR=$(_find_dotfiles_dir)
 # }}}
 
-# {{{ P10K instant prompt
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# }}}
-
-source "$_DOTFILESDIR/zsh/p10k.zsh"
-
 # {{{ python venv
 PYTHON_TOOLS_HOME=${XDG_DATA_DIR:-$HOME/.local/share}/venv/tools
 [[ ! -d $PYTHON_TOOLS_HOME ]] && python3 -m venv $PYTHON_TOOLS_HOME
@@ -109,5 +98,16 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 # }}}
+
+# {{{ P10K instant prompt
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# }}}
+
+source "$_DOTFILESDIR/zsh/p10k.zsh"
 
 # vim: set fdm=marker fmr={{{,}}} ts=4 sw=4 et:
