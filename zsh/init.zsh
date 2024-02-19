@@ -58,6 +58,8 @@ PYTHON_TOOLS_HOME=${XDG_DATA_DIR:-$HOME/.local/share}/venv/tools
 export PATH=$PATH:$PYTHON_TOOLS_HOME/bin
 # }}}
 
+source "$_DOTFILESDIR/zsh/p10k.zsh"
+
 # {{{ load zplug
 export ZPLUG_HOME=$HOME/.zplug
 if [ ! -e "$ZPLUG_HOME" ]; then
@@ -107,7 +109,5 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # }}}
-
-source "$_DOTFILESDIR/zsh/p10k.zsh"
 
 # vim: set fdm=marker fmr={{{,}}} ts=4 sw=4 et:
