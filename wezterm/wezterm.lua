@@ -18,7 +18,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Solarized (dark) (terminal.sexy)'
-config.font = wezterm.font 'MesloLGS NF'
+config.font = wezterm.font_with_fallback { 'MesloLGS NF', 'D2Coding' }
 config.font_size = 15
 
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
